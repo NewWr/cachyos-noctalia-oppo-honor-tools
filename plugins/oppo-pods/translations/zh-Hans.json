@@ -1,0 +1,153 @@
+{
+  "plugin": {
+    "name": "OPPO 耳机",
+    "description": "OPPO 耳机电量、降噪、均衡器与设备控制"
+  },
+  "notify": {
+    "mode_changed": "模式：%s",
+    "low_battery": "{side}电量剩余 {level}%"
+  },
+  "panel": {
+    "title": "OPPO 耳机",
+    "battery": "电量",
+    "case": "充电盒",
+    "case_offline": "盒盖已关闭",
+    "charging": "充电中",
+    "left": "左耳",
+    "right": "右耳",
+    "noise_control": "降噪模式",
+    "features": "耳机设置",
+    "unknown": "未知",
+    "working": "正在应用…",
+    "unavailable": "当前耳机没有提供这些控制。",
+    "guidance": "请先通过蓝牙连接耳机。连接后可查看电量、调音并控制降噪。",
+    "realtime_level": "智能降噪当前强度：{level}",
+    "noise_guidance": "请佩戴耳机后切换降噪模式。",
+    "status": {
+      "connected": "已连接",
+      "disconnected": "未连接"
+    },
+    "tab": {
+      "controls": "控制",
+      "eq": "调音",
+      "devices": "设备"
+    },
+    "mode": {
+      "anc": "降噪",
+      "off": "关闭",
+      "transparency": "通透",
+      "smart": "智能",
+      "light": "轻度",
+      "medium": "中度",
+      "deep": "深度",
+      "adaptive": "自适应"
+    },
+    "feature": {
+      "dual_device": "双设备连接",
+      "game_mode": "游戏低延迟",
+      "spatial_sound": "空间音效",
+      "wear_detection": "佩戴检测",
+      "hearing_enhancement": "个性化听感"
+    },
+    "wear": {
+      "unknown": "状态未知",
+      "worn": "佩戴中",
+      "removed": "已摘下",
+      "in_case": "盒内",
+      "disconnected": "未连接"
+    },
+    "eq": {
+      "title": "均衡器",
+      "custom": "自定义调音",
+      "current": "使用中",
+      "edit": "编辑",
+      "delete": "删除",
+      "create": "新建调音",
+      "name": "调音名称",
+      "save": "保存到耳机",
+      "cancel": "取消",
+      "delete_guidance": "删除正在使用的调音前，请先选择其他预设。",
+      "preset": {
+        "original": "至臻原音",
+        "vocals": "纯享人声",
+        "bass": "澎湃低音",
+        "energetic": "活力动感"
+      }
+    },
+    "find": {
+      "title": "查找耳机",
+      "start": "播放提示音",
+      "stop": "停止提示音",
+      "guidance": "实验功能：请先摘下两只耳机，程序将在 10 秒后发送停止命令。"
+    },
+    "device": {
+      "title": "设备信息",
+      "model": "型号",
+      "firmware": "固件版本",
+      "codec": "音频编码",
+      "product": "产品编号",
+      "address": "蓝牙地址",
+      "sync": "状态同步",
+      "realtime": "实时",
+      "polling": "定时刷新",
+      "list": "已保存的设备",
+      "connected": "已连接",
+      "saved": "已保存"
+    },
+    "desktop_pause": {
+      "ready": "佩戴联动播放已就绪。",
+      "waiting": "正在等待有效的佩戴状态。",
+      "paused": "电脑播放器已暂停。",
+      "failed": "电脑播放器暂停失败，请手动暂停后重试。",
+      "unavailable": "电脑自动暂停需要 busctl 和 pactl。",
+      "no_player": "没有找到通过本耳机播放的可控播放器。",
+      "disabled": "电脑自动暂停已关闭。",
+      "resume_ready": "重新佩戴后将自动继续由插件暂停的音乐。",
+      "resumed": "已自动恢复电脑播放。",
+      "cancelled": "自动恢复已取消；播放器由你手动控制。",
+      "resume_failed": "自动恢复失败，请手动继续播放。"
+    }
+  },
+  "settings": {
+    "device_mac": {
+      "label": "耳机蓝牙地址",
+      "description": "留空时自动检测当前已连接的 OPPO、一加或 realme 耳机。"
+    },
+    "hide_when_disconnected": {
+      "label": "断开连接时隐藏",
+      "description": "耳机未连接时隐藏状态栏小组件。"
+    },
+    "low_battery_notifications": {
+      "label": "低电量提醒",
+      "description": "在电量降至 20% 和 10% 时提醒，同一档位不重复提醒。"
+    },
+    "pause_on_remove": {
+      "label": "佩戴联动播放",
+      "description": "摘下一只耳机时暂停通过本耳机播放的音乐；重新佩戴时继续由插件暂停的音乐。手动操作、切歌或断连后取消自动恢复。"
+    }
+  },
+  "widget": {
+    "mode": "模式",
+    "not_connected": "耳机未连接",
+    "left_click": "左键",
+    "right_click": "右键",
+    "action": {
+      "left_click": "打开控制面板",
+      "right_click": "切换降噪模式"
+    }
+  },
+  "error": {
+    "connection": "请连接耳机后重试。",
+    "handshake": "无法建立耳机控制连接。",
+    "timeout": "耳机响应超时，请重试。",
+    "rejected": "耳机拒绝了本次修改。",
+    "mismatch": "耳机没有确认所请求的修改。",
+    "unsupported": "当前耳机尚未提供此项控制。",
+    "invalid": "请检查调音名称与参数。",
+    "active_eq": "请先选择其他调音，再删除当前预设。",
+    "duplicate_eq": "已有同名调音，请换一个名称。",
+    "remove_earbuds": "请先摘下两只耳机，再播放查找提示音。",
+    "busy": "耳机正在处理其他操作，请稍后重试。",
+    "wear_required": "请佩戴耳机后切换降噪模式。"
+  }
+}

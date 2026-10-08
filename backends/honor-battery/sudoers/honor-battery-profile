@@ -1,0 +1,2 @@
+# Optional desktop control. Only members of this group may use these exact commands.
+%honor-charge ALL=(root) NOPASSWD: /usr/local/bin/honor-battery-profile set 40/70, /usr/local/bin/honor-battery-profile set 70/90, /usr/local/bin/honor-battery-profile set 95/100

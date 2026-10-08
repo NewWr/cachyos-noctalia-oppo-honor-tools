@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cat <<'MENU'
+HONOR FMB-P 电池充电档位
+
+  1) 40/70  家用：低于 40% 充电，70% 停止
+  2) 70/90  办公：低于 70% 充电，90% 停止
+  3) 95/100 差旅：接近满电，100% 停止
+  4) 查看当前档位
+  q) 退出
+MENU
+printf '\n选择 [1-4/q]: '
+read -r choice
+case "$choice" in
+    1) /usr/local/bin/honor-battery-profile set 40/70 ;;
+    2) /usr/local/bin/honor-battery-profile set 70/90 ;;
+    3) /usr/local/bin/honor-battery-profile set 95/100 ;;
+    4) /usr/local/bin/honor-battery-profile status ;;
+    q|Q|'') exit 0 ;;
+    *) echo '无效选择。' >&2; exit 2 ;;
+esac
+printf '\n按回车关闭窗口。'
+read -r _

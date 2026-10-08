@@ -1,0 +1,174 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SYSFS='/sys/devices/platform/huawei-wmi/charge_control_thresholds'
+STATE_DIR='/var/lib/honor-battery-profile'
+STATE_FILE="$STATE_DIR/profile"
+CONFIG='/etc/default/honor-battery-profile'
+LOCK_FILE="$STATE_DIR/.lock"
+
+DEFAULT_PROFILE='home'
+PERSIST_SELECTION='yes'
+if [[ -r "$CONFIG" ]]; then
+    # This is an administrator-owned configuration file.
+    # shellcheck disable=SC1091
+    . "$CONFIG"
+fi
+
+usage() {
+    cat <<'USAGE'
+用法:
+  honor-battery-profile status
+  honor-battery-profile list
+  honor-battery-profile set home|office|travel|40/70|70/90|95/100
+  honor-battery-profile default
+  honor-battery-profile apply
+  honor-battery-profile boot
+
+档位:
+  home    / 40/70   家用：低于 40% 时充电，达到 70% 时停止
+  office  / 70/90   办公：低于 70% 时充电，达到 90% 时停止
+  travel  / 95/100  差旅：接近满电，达到 100% 时停止
+
+set 会立即切换并保存当前选择；default 会恢复默认的 40/70。
+USAGE
+}
+
+resolve_profile() {
+    local requested="${1,,}"
+    case "$requested" in
+        home|default|40/70|40-70|40,70)
+            PROFILE='home'; START=40; END=70; LABEL='家用'; MODE=1 ;;
+        office|70/90|70-90|70,90)
+            PROFILE='office'; START=70; END=90; LABEL='办公'; MODE=2 ;;
+        travel|95/100|95-100|95,100)
+            PROFILE='travel'; START=95; END=100; LABEL='差旅'; MODE=3 ;;
+        *)
+            return 1 ;;
+    esac
+}
+
+need_root() {
+    if (( EUID != 0 )); then
+        exec sudo -n -- /usr/local/bin/honor-battery-profile "$@"
+    fi
+}
+
+require_supported_machine() {
+    local vendor product
+    vendor="$(cat /sys/class/dmi/id/sys_vendor 2>/dev/null || true)"
+    product="$(cat /sys/class/dmi/id/product_name 2>/dev/null || true)"
+    [[ "$vendor" == HONOR && "$product" == FMB-P ]] || {
+        echo 'Writes are supported only on HONOR FMB-P.' >&2
+        return 1
+    }
+}
+
+wait_for_sysfs() {
+    local i
+    for i in {1..60}; do
+        if [[ -w "$SYSFS" ]]; then
+            return 0
+        fi
+        sleep 0.25
+    done
+    echo "找不到可写的电池档位接口：$SYSFS" >&2
+    echo '请确认 huawei_wmi 已加载且 ACPI 覆盖已生效。' >&2
+    return 1
+}
+
+write_state() {
+    install -d -o root -g root -m 0755 "$STATE_DIR"
+    printf '%s\n' "$PROFILE" > "$STATE_FILE"
+    chown root:root "$STATE_FILE"
+    chmod 0644 "$STATE_FILE"
+}
+
+apply_profile() {
+    local requested="$1"
+    resolve_profile "$requested" || {
+        echo "未知档位：$requested" >&2
+        return 2
+    }
+    require_supported_machine
+    wait_for_sysfs
+
+    install -d -o root -g root -m 0755 "$STATE_DIR"
+    exec 9>"$LOCK_FILE"
+    flock -x 9
+    printf '%s %s\n' "$START" "$END" > "$SYSFS"
+
+    local got_start='' got_end='' i
+    for i in {1..20}; do
+        read -r got_start got_end < "$SYSFS" || true
+        if [[ "$got_start" == "$START" && "$got_end" == "$END" ]]; then
+            break
+        fi
+        sleep 0.1
+    done
+    if [[ "$got_start" != "$START" || "$got_end" != "$END" ]]; then
+        echo "写入后接口返回 ${got_start:-?} ${got_end:-?}，期望 $START $END" >&2
+        return 1
+    fi
+
+    if [[ "${PERSIST_SELECTION,,}" != 'no' ]]; then
+        write_state
+    fi
+    printf '已设置：%s（%s/%s，EC 官方模式 %s）\n' "$LABEL" "$START" "$END" "$MODE"
+}
+
+status() {
+    local got_start='' got_end='' state=''
+    if [[ -r "$SYSFS" ]]; then
+        read -r got_start got_end < "$SYSFS" || true
+    fi
+    if [[ -r "$STATE_FILE" ]]; then
+        read -r state < "$STATE_FILE" || true
+    fi
+    printf '当前接口档位：%s/%s\n' "${got_start:-?}" "${got_end:-?}"
+    if [[ -n "$state" ]] && resolve_profile "$state"; then
+        printf '当前选择：%s（%s，%s/%s）\n' "$PROFILE" "$LABEL" "$START" "$END"
+    else
+        printf '当前选择：未保存（默认配置：%s）\n' "$DEFAULT_PROFILE"
+    fi
+    if [[ "$got_start $got_end" == '40 70' ]]; then
+        echo '匹配官方家用档位。'
+    elif [[ "$got_start $got_end" == '70 90' ]]; then
+        echo '匹配官方办公档位。'
+    elif [[ "$got_start $got_end" == '95 100' ]]; then
+        echo '匹配官方差旅档位。'
+    else
+        echo '当前数值不是本工具管理的官方档位。'
+    fi
+}
+
+command_name="${1:-status}"
+case "$command_name" in
+    status)
+        status ;;
+    list)
+        usage ;;
+    set)
+        [[ $# -eq 2 ]] || { usage >&2; exit 2; }
+        need_root "$@"
+        apply_profile "$2" ;;
+    default|reset)
+        need_root "$@"
+        apply_profile "$DEFAULT_PROFILE" ;;
+    boot)
+        need_root "$@"
+        apply_profile "$DEFAULT_PROFILE" ;;
+    apply|apply-default)
+        need_root "$@"
+        selected="$DEFAULT_PROFILE"
+        if [[ "${PERSIST_SELECTION,,}" != 'no' && -r "$STATE_FILE" ]]; then
+            read -r saved < "$STATE_FILE" || true
+            [[ -n "${saved:-}" ]] && selected="$saved"
+        fi
+        apply_profile "$selected" ;;
+    help|-h|--help)
+        usage ;;
+    *)
+        usage >&2
+        exit 2 ;;
+esac

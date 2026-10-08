@@ -1,0 +1,17 @@
+{
+  "note": "Observed Free4 payloads, with the custom EQ name anonymized. No device addresses.",
+  "queries": [
+    {
+      "name": "handshake",
+      "matching_response": "00ff775aeae70ea007"
+    },
+    {
+      "name": "features",
+      "matching_response": "0007050104010b011100180006001b01"
+    },
+    {
+      "name": "all_eq",
+      "matching_response": "000101fa060406e6b58be8af95063e00fdfa0004e80306a00fff401f05803e00"
+    }
+  ]
+}

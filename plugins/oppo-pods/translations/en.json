@@ -1,0 +1,153 @@
+{
+  "notify": {
+    "mode_changed": "Mode: %s",
+    "low_battery": "{side} battery: {level}%"
+  },
+  "panel": {
+    "battery": "Battery",
+    "case": "Case",
+    "case_offline": "Closed",
+    "charging": "Charging",
+    "guidance": "Connect your earbuds via Bluetooth to view battery status and control noise cancellation modes.",
+    "left": "Left",
+    "mode": {
+      "anc": "Noise Cancellation",
+      "off": "Off",
+      "transparency": "Transparency",
+      "smart": "Smart",
+      "light": "Light",
+      "medium": "Medium",
+      "deep": "Deep",
+      "adaptive": "Adaptive"
+    },
+    "noise_control": "Noise Control",
+    "right": "Right",
+    "status": {
+      "connected": "Connected",
+      "disconnected": "Not Connected"
+    },
+    "title": "OPPO Pods",
+    "unknown": "Unknown",
+    "unavailable": "This device does not offer these controls.",
+    "working": "Applying…",
+    "features": "Earbud settings",
+    "realtime_level": "Smart ANC level: {level}",
+    "tab": {
+      "controls": "Controls",
+      "eq": "Equalizer",
+      "devices": "Device"
+    },
+    "feature": {
+      "dual_device": "Dual-device connection",
+      "game_mode": "Low-latency game mode",
+      "spatial_sound": "Spatial sound",
+      "wear_detection": "Wear detection",
+      "hearing_enhancement": "Personalized hearing"
+    },
+    "wear": {
+      "unknown": "Unknown",
+      "worn": "Worn",
+      "removed": "Removed",
+      "in_case": "In case",
+      "disconnected": "Disconnected"
+    },
+    "eq": {
+      "title": "Equalizer",
+      "custom": "Custom presets",
+      "current": "Selected",
+      "edit": "Edit",
+      "delete": "Delete",
+      "create": "New preset",
+      "name": "Preset name",
+      "save": "Save to earbuds",
+      "cancel": "Cancel",
+      "delete_guidance": "Select another preset before deleting the current one.",
+      "preset": {
+        "original": "Original sound",
+        "vocals": "Clear vocals",
+        "bass": "Powerful bass",
+        "energetic": "Energetic"
+      }
+    },
+    "find": {
+      "title": "Find earbuds",
+      "start": "Play sound",
+      "stop": "Stop sound",
+      "guidance": "Experimental: remove both earbuds first. A stop command is sent after 10 seconds."
+    },
+    "device": {
+      "title": "Device information",
+      "model": "Model",
+      "firmware": "Firmware",
+      "codec": "Audio codec",
+      "product": "Product ID",
+      "address": "Bluetooth address",
+      "sync": "Status updates",
+      "realtime": "Live",
+      "polling": "Periodic",
+      "list": "Saved devices",
+      "connected": "Connected",
+      "saved": "Saved"
+    },
+    "noise_guidance": "Wear the earbuds to change listening modes.",
+    "desktop_pause": {
+      "ready": "Wear-linked playback is ready.",
+      "waiting": "Waiting for a valid wearing report.",
+      "paused": "Desktop player paused.",
+      "failed": "Desktop pause failed. Please pause the player manually and retry.",
+      "unavailable": "Desktop auto-pause requires busctl and pactl.",
+      "no_player": "No controllable player is routed to these earbuds.",
+      "disabled": "Desktop auto-pause is disabled.",
+      "resume_ready": "Wear again to resume music paused by the plugin.",
+      "resumed": "Desktop playback resumed.",
+      "cancelled": "Automatic resume cancelled. Playback is under manual control.",
+      "resume_failed": "Automatic resume failed. Please resume manually."
+    }
+  },
+  "plugin": {
+    "description": "Battery monitor and active noise cancellation (ANC) control for OPPO, OnePlus, and realme Bluetooth earbuds",
+    "name": "OPPO Pods"
+  },
+  "settings": {
+    "device_mac": {
+      "description": "Bluetooth MAC address of your earbuds. Leave blank to auto-detect the connected device.",
+      "label": "Earbuds MAC Address"
+    },
+    "hide_when_disconnected": {
+      "description": "Hide the bar widget when the earbuds are not connected.",
+      "label": "Hide when disconnected"
+    },
+    "low_battery_notifications": {
+      "label": "Low battery notifications",
+      "description": "Notify at 20% and 10%, without repeating the same warning."
+    },
+    "pause_on_remove": {
+      "label": "Wear-linked playback",
+      "description": "Removing an earbud pauses music routed to these earbuds. Wearing again resumes only music paused by the plugin; manual playback actions, track changes or disconnection cancel resume."
+    }
+  },
+  "widget": {
+    "action": {
+      "left_click": "Open Controls",
+      "right_click": "Cycle Noise Mode"
+    },
+    "mode": "Mode",
+    "not_connected": "Earbuds not connected",
+    "left_click": "Left click",
+    "right_click": "Right click"
+  },
+  "error": {
+    "connection": "Connect the earbuds and try again.",
+    "handshake": "The earbuds control connection was not accepted.",
+    "timeout": "The earbuds did not respond in time. Try again.",
+    "rejected": "The earbuds rejected this change.",
+    "mismatch": "The earbuds did not confirm the requested change.",
+    "unsupported": "This control is not available for this device.",
+    "invalid": "Check the preset name and values.",
+    "active_eq": "Select another EQ before deleting the current one.",
+    "duplicate_eq": "An EQ with this name already exists.",
+    "remove_earbuds": "Remove both earbuds before playing the find sound.",
+    "busy": "Another earbud command is running. Try again.",
+    "wear_required": "Wear the earbuds before changing the listening mode."
+  }
+}

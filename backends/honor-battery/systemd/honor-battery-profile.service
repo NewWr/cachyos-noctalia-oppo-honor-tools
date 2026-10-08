@@ -1,0 +1,14 @@
+[Unit]
+Description=Apply HONOR battery charge profile
+Wants=systemd-udev-settle.service
+After=systemd-udev-settle.service
+Before=graphical.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/modprobe huawei_wmi
+ExecStart=/usr/local/bin/honor-battery-profile boot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

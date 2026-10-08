@@ -1,0 +1,7 @@
+#!/bin/sh
+# huawei-wmi/EC state can be reinitialized by suspend/resume.
+# Reapply the selected official profile after the machine wakes.
+if [ "${1:-}" = post ]; then
+    /usr/local/bin/honor-battery-profile apply >/dev/null 2>&1 || \
+        logger -t honor-battery-profile 'failed to reapply battery profile after resume'
+fi

@@ -1,0 +1,48 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials*
+secrets*
+settings.toml
+config.local.*
+*.local.toml
+# Machine dumps can contain OEM Windows keys
+*.aml
+*.dsl
+*.dat
+acpi-dumps/
+dsdt/
+# Runtime data, backups and generated output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.log
+*.sock
+*.lock
+*.bak*
+*.backup*
+oppo_pods_state.json
+oppo_pods_channel.txt
+profile
+work/
+dist/
+*.zip
+*.tar.gz
+.DS_Store
+# Kernel build products
+*.o
+*.ko
+*.mod
+*.mod.c
+*.cmd
+Module.symvers
+modules.order
+.tmp_versions/

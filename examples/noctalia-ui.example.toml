@@ -1,0 +1,11 @@
+# Reference fragments only. Use Noctalia Settings to add these UI entries.
+# Do not replace your settings.toml with this file.
+[[control_center.shortcuts]]
+type = "dc/honor-fan:hardware"
+
+[[control_center.shortcuts]]
+type = "dc/honor-battery-profile:profile"
+
+[widget.oppo-pods]
+type = "osp54/oppo-pods:oppo-pods"
+# Add "oppo-pods" to your chosen bar layout through Settings.

@@ -1,0 +1,31 @@
+id = "dc/honor-battery-profile"
+name = "HONOR Battery Profiles"
+version = "1.0.0"
+plugin_api = 22
+author = "dc"
+license = "MIT"
+description = "HONOR FMB-P official battery charge profiles"
+tags = ["hardware", "battery", "honor"]
+icon = "battery-eco"
+dependencies = []
+
+[[service]]
+id = "service"
+entry = "service.luau"
+
+[[shortcut]]
+id = "profile"
+entry = "shortcut.luau"
+
+[[widget]]
+id = "battery-profile"
+entry = "widget.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 360
+height = 300
+placement = "floating"
+position = "center"
+open_near_click = true

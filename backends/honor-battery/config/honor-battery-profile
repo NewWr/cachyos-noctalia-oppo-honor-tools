@@ -1,0 +1,6 @@
+# HONOR FMB-P battery charge profiles.
+# home is the boot default: 40% start, 70% stop.
+DEFAULT_PROFILE=home
+# Keep a manually selected profile across suspend/resume. The boot service
+# always reapplies DEFAULT_PROFILE, so a reboot returns to 40/70.
+PERSIST_SELECTION=yes

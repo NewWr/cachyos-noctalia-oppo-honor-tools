@@ -1,0 +1,28 @@
+id = "dc/honor-fan"
+name = "HONOR FMB-P Hardware"
+version = "1.1.4"
+plugin_api = 22
+author = "dc"
+license = "MIT"
+description = "Show HONOR FMB-P sensors and control three-level keyboard backlight."
+tags = ["hardware", "system", "honor"]
+icon = "wind"
+dependencies = ["lm_sensors"]
+
+[[service]]
+id = "monitor"
+entry = "service.luau"
+
+# Control Center shortcut; no bar widget is declared on purpose.
+[[shortcut]]
+id = "hardware"
+entry = "shortcut.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 360
+height = 300
+placement = "floating"
+position = "center"
+open_near_click = true
