@@ -10,10 +10,14 @@ PATTERNS = {
     'GitHub credential': re.compile(r'\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{30,})\b'),
     'cloud access key': re.compile(r'\b(?:AKIA|ASIA)[A-Z0-9]{16}\b'),
     'service credential': re.compile(r'\b(?:sk-[A-Za-z0-9_-]{24,}|xox[baprs]-[A-Za-z0-9-]{20,})\b'),
+    'Google API key': re.compile(r'\bAIza[0-9A-Za-z_-]{35}\b'),
+    'GitLab credential': re.compile(r'\bglpat-[0-9A-Za-z_-]{20,}\b'),
+    'JWT-like credential': re.compile(r'\beyJ[A-Za-z0-9_-]{16,}\.[A-Za-z0-9_-]{16,}\.[A-Za-z0-9_-]{16,}\b'),
+    'Bearer credential': re.compile(r'(?i)\bBearer\s+[A-Za-z0-9_./+-]{20,}'),
     'embedded HTTP credentials': re.compile(r'https?://[^\s/]+:[^\s/]+@'),
     'personal absolute path': re.compile(r'(?:/home/|/Users/)[A-Za-z0-9_.-]+/'),
     'Windows OEM key': re.compile(r'\b[A-Z0-9]{5}(?:-[A-Z0-9]{5}){4}\b'),
-    'literal credential assignment': re.compile(r'''(?i)\b(?:secret(?:_[a-z0-9]+)*|api[_-]?key|access[_-]?token|password)\s*=\s*["'][^"'\n]{8,}["']'''),
+    'literal credential assignment': re.compile(r'''(?i)\b(?:[a-z][a-z0-9]*[_-])*(?:secret(?:_[a-z0-9]+)*|api[_-]?key|access[_-]?token|auth[_-]?token|client[_-]?secret|password)\s*["']?\s*[:=]\s*["'][^"'\n]{8,}["']'''),
 }
 MAC = re.compile(r'\b[0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){5}\b')
 TEST_ADDRESSES = {'00:00:00:00:00:00', 'AA:BB:CC:DD:EE:FF', 'AA:BB:CC:DD:EE:00', '02:00:00:00:00:0A'}

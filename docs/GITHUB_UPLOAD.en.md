@@ -2,7 +2,7 @@
 
 [简体中文](GITHUB_UPLOAD.md) · [README](../README.en.md)
 
-Target repository: [NewWr/Cachyos--magicbook--](https://github.com/NewWr/Cachyos--magicbook--). This folder is the repository root, with all three plugins under `plugins/`. Do not upload the computer's complete Noctalia configuration directory.
+Target repository: [NewWr/cachyos-noctalia-oppo-honor-tools](https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools). This folder is the repository root, with all three plugins under `plugins/`. Do not upload the computer's complete Noctalia configuration directory.
 
 ## Option 1: Git CLI
 
@@ -25,7 +25,7 @@ git diff --cached
 
 ```bash
 git commit -m "Add OPPO Pods and HONOR Noctalia tools"
-git remote add origin https://github.com/NewWr/Cachyos--magicbook--.git
+git remote add origin https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools.git
 git push -u origin main
 ```
 

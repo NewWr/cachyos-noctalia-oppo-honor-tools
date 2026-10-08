@@ -1,8 +1,18 @@
-# Noctalia Device Toolkit
+# CachyOS / Noctalia OPPO Earbuds and HONOR Laptop Tools
 
 English · [简体中文](README.md)
 
-One GitHub repository containing the local **OPPO Pods, HONOR Hardware and HONOR Battery Profiles** tools for Noctalia. Each plugin can be enabled independently. HONOR features require the matching hardware interfaces. This is a community/local collection, not an official release by OPPO, HONOR or Noctalia.
+**Noctalia** plugins for **CachyOS / Linux**: **OPPO Enco Free4** Bluetooth earbud battery, active noise cancellation (ANC), EQ and wear/playback integration; **HONOR MagicBook Pro 14 (FMB-P)** fan RPM, temperature monitoring, keyboard backlight and battery charge thresholds. Includes complete source, installers and Chinese/English documentation.
+
+Each tool can be enabled independently. Other earbuds expose partial controls according to known protocol capabilities; HONOR features require matching hardware interfaces. This is a community/local project, not an official vendor release.
+
+Repository: [NewWr/cachyos-noctalia-oppo-honor-tools](https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools).
+
+```bash
+git clone https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools.git
+cd cachyos-noctalia-oppo-honor-tools
+```
+
 
 ## The three tools
 
@@ -100,7 +110,7 @@ See the [verification report](docs/VERIFICATION.en.md) and [GitHub upload guide]
 
 The upload copy removes the original remote earbud-image signing credential and download code. Local icons and an optional local image cache remain; earbud controls do not need that remote service. Test addresses are fictional. User settings, Bluetooth pairing keys, playback history, OEM product keys and hardware serial numbers are excluded.
 
-The plugin still creates local runtime caches containing device addresses/state. These are not source files. See the [privacy guide](docs/PRIVACY.en.md). `.gitignore` cannot protect sensitive files already committed; rescan and review the staged content before each new publication.
+The plugin still creates local runtime caches containing device addresses/state. These are not source files. See the [privacy guide](docs/PRIVACY.en.md) and [public-file/history audit](docs/SECRET_AUDIT.en.md). `.gitignore` cannot protect sensitive files already committed; rescan and review the staged content before each new publication.
 
 To update, disable the relevant plugin, back up its installed directory outside the repository, copy the new source and re-enable it. To remove the plugins, disable the IDs, remove the `device-toolkit` source and remove the UI entries in Settings. Backend removal is documented in the individual guides.
 

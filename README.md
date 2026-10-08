@@ -1,8 +1,18 @@
-# Noctalia Device Toolkit
+# CachyOS / Noctalia OPPO 耳机与荣耀笔记本管理工具
 
 [English](README.en.md) · 简体中文
 
-将 **OPPO Pods、HONOR 硬件、HONOR 充电档位** 三个本地 Noctalia 工具整理在同一个 GitHub 仓库中。它们可以独立启用；HONOR 相关功能只适用于具备对应接口的机器。本项目是社区/本地工具合集，不是 OPPO、HONOR 或 Noctalia 的官方发行版。
+面向 **CachyOS / Linux** 的 **Noctalia** 插件合集：支持 **OPPO Enco Free4** 蓝牙耳机电量、降噪（ANC）、EQ 与佩戴播放联动；提供 **HONOR 荣耀 MagicBook Pro 14（FMB-P）** 风扇转速、温度监测、键盘背光及电池充电阈值管理。包含完整源码、安装脚本和中英文文档。
+
+三个工具可以独立启用；其他耳机按已知协议能力提供部分功能，HONOR 功能需要对应硬件接口。本项目是社区/本地工具，不是厂商官方发行版。
+
+项目仓库：[NewWr/cachyos-noctalia-oppo-honor-tools](https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools)。
+
+```bash
+git clone https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools.git
+cd cachyos-noctalia-oppo-honor-tools
+```
+
 
 ## 三个工具
 
@@ -100,7 +110,7 @@ bash scripts/check.sh
 
 OPPO 上传版本移除了原代码中的远程耳机图片下载鉴权与签名密钥，保留本地图标及可选本地图片缓存。耳机控制不依赖这个下载服务。测试地址均为虚构样例；没有打包用户设置、蓝牙配对密钥、播放记录、OEM 产品密钥或硬件序列号。
 
-运行时仍会在本机生成含设备地址/状态的缓存；这些数据不属于源码。详见 [隐私说明](docs/PRIVACY.md)。`.gitignore` 无法保护已经提交过的敏感文件；新提交前应重新扫描并查看实际暂存内容。
+运行时仍会在本机生成含设备地址/状态的缓存；这些数据不属于源码。详见 [隐私说明](docs/PRIVACY.md) 和 [公开文件与历史提交审核](docs/SECRET_AUDIT.md)。`.gitignore` 无法保护已经提交过的敏感文件；新提交前应重新扫描并查看实际暂存内容。
 
 更新时先禁用相应插件，备份本地安装目录，再复制新源码并重新启用。个人配置和备份应保留在仓库之外。卸载插件只需禁用 ID、移除 `device-toolkit` 来源并在设置中移除对应入口；系统后端的卸载步骤见各工具 README。
 

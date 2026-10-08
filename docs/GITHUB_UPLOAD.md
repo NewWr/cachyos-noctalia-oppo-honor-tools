@@ -2,7 +2,7 @@
 
 [English](GITHUB_UPLOAD.en.md) · [返回 README](../README.md)
 
-目标仓库：[NewWr/Cachyos--magicbook--](https://github.com/NewWr/Cachyos--magicbook--)。本文件夹本身就是仓库根目录，三个插件都在 `plugins/` 下；不要把整个电脑的 Noctalia 配置目录一起上传。
+目标仓库：[NewWr/cachyos-noctalia-oppo-honor-tools](https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools)。本文件夹本身就是仓库根目录，三个插件都在 `plugins/` 下；不要把整个电脑的 Noctalia 配置目录一起上传。
 
 ## 方式一：Git 命令行
 
@@ -25,7 +25,7 @@ git diff --cached
 
 ```bash
 git commit -m "Add OPPO Pods and HONOR Noctalia tools"
-git remote add origin https://github.com/NewWr/Cachyos--magicbook--.git
+git remote add origin https://github.com/NewWr/cachyos-noctalia-oppo-honor-tools.git
 git push -u origin main
 ```
 
